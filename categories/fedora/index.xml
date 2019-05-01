@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Fedora on 一个人的朝圣</title>
+    <link>http://hymian.github.io/categories/fedora/</link>
+    <description>Recent content in Fedora on 一个人的朝圣</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 01 May 2019 14:33:00 +0800</lastBuildDate>
+    
+	<atom:link href="http://hymian.github.io/categories/fedora/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Fedora KDE释放Alt&#43; Left Button的全局快捷键</title>
+      <link>http://hymian.github.io/post/kde_window_shortcut/</link>
+      <pubDate>Wed, 01 May 2019 14:33:00 +0800</pubDate>
+      
+      <guid>http://hymian.github.io/post/kde_window_shortcut/</guid>
+      <description>今天在Fedora 29 KDE上用vs code上写代码时遇到一个问题，vs code使用Alt+左键作为多光标选择的快捷键 但是在Fedora上这个</description>
+    </item>
+    
+  </channel>
+</rss>

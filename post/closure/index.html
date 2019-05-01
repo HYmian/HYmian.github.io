@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>for...range和闭包 - 一个人的朝圣</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="mian" />
+  <meta name="description" content="今天遇到了一个有趣的问题，涉及到了golang编程的三个知识点，for...range、闭包和goroutine 为了简化问题，写了一段示例代" />
+
+  <meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.31.1" />
+
+
+<link rel="canonical" href="http://hymian.github.io/post/closure/" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" href="/favicon.ico" />
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+<link href="/dist/even.min.css?v=2.7.0" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+<meta property="og:title" content="for...range和闭包" />
+<meta property="og:description" content="今天遇到了一个有趣的问题，涉及到了golang编程的三个知识点，for...range、闭包和goroutine 为了简化问题，写了一段示例代" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://hymian.github.io/post/closure/" />
+
+
+
+<meta property="article:published_time" content="2017-12-30T01:32:53&#43;08:00"/>
+
+<meta property="article:modified_time" content="2017-12-30T01:32:53&#43;08:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="for...range和闭包">
+<meta itemprop="description" content="今天遇到了一个有趣的问题，涉及到了golang编程的三个知识点，for...range、闭包和goroutine 为了简化问题，写了一段示例代">
+
+
+<meta itemprop="datePublished" content="2017-12-30T01:32:53&#43;08:00" />
+<meta itemprop="dateModified" content="2017-12-30T01:32:53&#43;08:00" />
+<meta itemprop="wordCount" content="706">
+
+
+
+<meta itemprop="keywords" content="golang," />
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="for...range和闭包"/>
+<meta name="twitter:description" content="今天遇到了一个有趣的问题，涉及到了golang编程的三个知识点，for...range、闭包和goroutine 为了简化问题，写了一段示例代"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">mian</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">mian</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">for...range和闭包</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2017-12-30 </span>
+        
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#fro-range">fro&hellip;range</a></li>
+<li><a href="#闭包">闭包</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      
+
+<p>今天遇到了一个有趣的问题，涉及到了golang编程的三个知识点，<code>for...range</code>、<code>闭包</code>和<code>goroutine</code></p>
+
+<p>为了简化问题，写了一段示例代码来做分析：</p>
+
+<pre><code class="language-golang">package main
+
+import &quot;time&quot;
+
+func main() {
+    ss := []string{
+        &quot;haha&quot;,
+        &quot;hehe&quot;,
+        &quot;xixi&quot;,
+    }
+
+    for _, s := range ss {
+        go func() {
+            print(s, &quot;\n&quot;)
+        }()
+    }
+
+    time.Sleep(1 * time.Second)
+}
+</code></pre>
+
+<p>如果我们无意中写出这种代码，心里预期的输出可能是三个不同的字符串，当然，顺序可能是不固定的，这是<code>goroutine</code>的特性决定的，我们这里就不做说明了，但实际上着代码的输出会是</p>
+
+<pre><code>xixi
+xixi
+xixi
+</code></pre>
+
+<p>如果我们将代码修改为</p>
+
+<pre><code class="language-golang">package main
+
+import &quot;time&quot;
+
+func main() {
+    ss := []string{
+        &quot;haha&quot;,
+        &quot;hehe&quot;,
+        &quot;xixi&quot;,
+    }
+
+    for _, s := range ss {
+        go func(s1 string) {
+            print(s1, &quot;\n&quot;)
+        }(s)
+        // time.Sleep(1 * time.Microsecond)
+    }
+
+    time.Sleep(1 * time.Second)
+}
+</code></pre>
+
+<p>则可以得到我们期望的输出</p>
+
+<pre><code>haha
+hehe
+xixi
+</code></pre>
+
+<p>原因在于<code>for...range</code>的赋值方式和<code>闭包</code>概念：</p>
+
+<h3 id="fro-range">fro&hellip;range</h3>
+
+<pre><code>The iteration variables may be declared by the &quot;range&quot; clause using a form of short 
+variable declaration (:=). In this case their types are set to the types of the 
+respective iteration values and their scope is the block of the &quot;for&quot; statement; they 
+are re-used in each iteration. If the iteration variables are declared outside the &quot;for&quot; 
+statement, after execution their values will be those of the last iteration.
+</code></pre>
+
+<p>这是<code>goang</code>官方对<code>for...range</code>中迭代变量&ndash;也就是我们代码中的<code>s</code>&ndash;的说明
+也就是说</p>
+
+<pre><code class="language-golang">for _, s := range ss {
+    //TODO:
+}
+</code></pre>
+
+<p>和</p>
+
+<pre><code class="language-golang">var s string
+for _, s = range ss {
+    //TODO:
+}
+</code></pre>
+
+<p>这两种写法是同样的效果，但是第二种写法相对来说就很好理解&ndash;<code>for...range</code>的迭代中不会重复分配迭代变量，而是会重复利用第一次生成的或者传入的迭代变量，<code>for...range</code>还有<a href="https://github.com/golang/go/wiki/Range#gotchas">另外一个坑</a>，在此不做赘述</p>
+
+<h3 id="闭包">闭包</h3>
+
+<p>简单点讲，引用了全局变量的函数就是典型的<code>闭包</code><sup class="footnote-ref" id="fnref:1"><a rel="footnote" href="#fn:1">1</a></sup>，这个函数在不同场景调用会产生不同的效果（即使收到了同样的输入参数），也可以称之为<em>闭包在运行时可以有多个实例</em></p>
+
+<p>所以我们第二段代码中，通过给匿名函数增加了一个输入变量，这样虽然我们仍在使用<code>for...range</code>，但是没有了<code>闭包</code>，出现一个传值调用的过程，最终得到我们期望的输出</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:1"><a href="https://zh.wikipedia.org/wiki/%E9%97%AD%E5%8C%85_(%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6)">参见wiki</a>
+ <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+    </div>
+
+    
+    
+<div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">mian</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">2017-12-30</span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="http://www.apache.org/licenses/LICENSE-2.0.txt" target="_blank">Apache License Version 2.0</a></span>
+  </p>
+</div>
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          
+          <a href="/tags/golang/">golang</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/type_alias/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">类型别名的用途</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        
+          <a class="next" href="/post/tail/">
+            <span class="next-text nav-default">Tail详解</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+  
+
+  
+
+  
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:gopher.mian@outlook.com" class="iconfont icon-email" title="email"></a>
+  <a href="http://hymian.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    
+      2017 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">mian</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+<script type="text/javascript" src="/dist/even.min.js?v=2.7.0"></script>
+
+
+
+
+</body>
+</html>

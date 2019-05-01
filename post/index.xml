@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on 一个人的朝圣</title>
+    <link>http://hymian.github.io/post/</link>
+    <description>Recent content in Posts on 一个人的朝圣</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 01 May 2019 14:33:00 +0800</lastBuildDate>
+    
+	<atom:link href="http://hymian.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Fedora KDE释放Alt&#43; Left Button的全局快捷键</title>
+      <link>http://hymian.github.io/post/kde_window_shortcut/</link>
+      <pubDate>Wed, 01 May 2019 14:33:00 +0800</pubDate>
+      
+      <guid>http://hymian.github.io/post/kde_window_shortcut/</guid>
+      <description>今天在Fedora 29 KDE上用vs code上写代码时遇到一个问题，vs code使用Alt+左键作为多光标选择的快捷键 但是在Fedora上这个</description>
+    </item>
+    
+    <item>
+      <title>dnf小技巧</title>
+      <link>http://hymian.github.io/post/dnf/</link>
+      <pubDate>Sun, 04 Nov 2018 17:54:14 +0800</pubDate>
+      
+      <guid>http://hymian.github.io/post/dnf/</guid>
+      <description>最近想做一件事，安装一个全新的fedora环境后，快速的自动把我的习惯配置给初始化，所以开始翻以前的安装历史，准备做一个脚本，这中间发现了几</description>
+    </item>
+    
+    <item>
+      <title>go template &lt;no value&gt;处理</title>
+      <link>http://hymian.github.io/post/go_template_no_value/</link>
+      <pubDate>Sat, 07 Apr 2018 23:39:33 +0800</pubDate>
+      
+      <guid>http://hymian.github.io/post/go_template_no_value/</guid>
+      <description>在使用go的template库的时候，碰到一个需求：如果模板中使用了元数据中没有的字段，希望在渲染后看到的是空或者一个我们期望的默认值，但是</description>
+    </item>
+    
+    <item>
+      <title>kubernetes feature gates</title>
+      <link>http://hymian.github.io/post/dynamic_kubelet_config/</link>
+      <pubDate>Sat, 24 Mar 2018 22:31:13 +0800</pubDate>
+      
+      <guid>http://hymian.github.io/post/dynamic_kubelet_config/</guid>
+      <description>kubernetes 1.8开始支持local ephemeral storage 在1.8和1.9系列中还只是alpha特性，为了开启特性，需要在master的三个组件和kubelet的启动参</description>
+    </item>
+    
+    <item>
+      <title>HttpRouter路由</title>
+      <link>http://hymian.github.io/post/router/</link>
+      <pubDate>Sun, 28 Jan 2018 23:55:19 +0800</pubDate>
+      
+      <guid>http://hymian.github.io/post/router/</guid>
+      <description>Gin这个web框架使用HttpRouter作为router HttpRouter使用radix tree1作为保存Http Path的数据结构 i</description>
+    </item>
+    
+    <item>
+      <title>gin-errorlog中间件</title>
+      <link>http://hymian.github.io/post/gin_middle/</link>
+      <pubDate>Thu, 18 Jan 2018 23:30:47 +0800</pubDate>
+      
+      <guid>http://hymian.github.io/post/gin_middle/</guid>
+      <description>一直在用gin这个框架来做web开发，但是在开发过程中有一点繁琐的地方： if err != nil { c.JSON(http.StatusInternalServerError, gin.H{ &amp;quot;error&amp;quot;: err.Error(), }) glog.Error(err) } else { c.JSON(http.StatusOK, hs) } 本文就是讲如何利用`gin的mid</description>
+    </item>
+    
+    <item>
+      <title>仿kubeadm输出版本信息</title>
+      <link>http://hymian.github.io/post/build_version/</link>
+      <pubDate>Mon, 15 Jan 2018 00:16:35 +0800</pubDate>
+      
+      <guid>http://hymian.github.io/post/build_version/</guid>
+      <description>一直很喜欢kubeadm version子命令输出的版本信息格式 kubeadm version: &amp;amp;version.Info{Major:&amp;quot;1&amp;quot;, Minor:&amp;quot;9&amp;quot;, GitVersion:&amp;quot;v1.9.1&amp;quot;, GitCommit:&amp;quot;3a1c9449a956b6026f075fa3134ff92f7d55f812&amp;quot;, GitTreeState:&amp;quot;clean&amp;quot;, BuildDate:&amp;quot;2018-01-04T11:40:06Z&amp;quot;, GoVersion:&amp;quot;go1.9.2&amp;quot;, Compiler:&amp;quot;gc&amp;quot;, Platform:&amp;quot;linux/amd64&amp;quot;} 今天从kubernetes项目里扣出了一部分shell代</description>
+    </item>
+    
+    <item>
+      <title>类型别名的用途</title>
+      <link>http://hymian.github.io/post/type_alias/</link>
+      <pubDate>Sun, 07 Jan 2018 22:04:26 +0800</pubDate>
+      
+      <guid>http://hymian.github.io/post/type_alias/</guid>
+      <description>通常我们使用类型别名只是为了提高代码的可读性，但是今天看到一段有趣的代码，利用类型别名解决了一个递归调用的问题 package main import ( &amp;quot;encoding/json&amp;quot; &amp;quot;fmt&amp;quot; ) type Author struct { ID uint64 `json:&amp;quot;id&amp;quot;` Email</description>
+    </item>
+    
+    <item>
+      <title>for...range和闭包</title>
+      <link>http://hymian.github.io/post/closure/</link>
+      <pubDate>Sat, 30 Dec 2017 01:32:53 +0800</pubDate>
+      
+      <guid>http://hymian.github.io/post/closure/</guid>
+      <description>今天遇到了一个有趣的问题，涉及到了golang编程的三个知识点，for...range、闭包和goroutine 为了简化问题，写了一段示例代</description>
+    </item>
+    
+    <item>
+      <title>Tail详解</title>
+      <link>http://hymian.github.io/post/tail/</link>
+      <pubDate>Tue, 26 Dec 2017 22:15:00 +0800</pubDate>
+      
+      <guid>http://hymian.github.io/post/tail/</guid>
+      <description>&lt;p&gt;tail是&lt;a href=&#34;http://www.gnu.org/software/coreutils/coreutils.html&#34;&gt;GNU/Coreutils&lt;/a&gt;的一个子工具&lt;/p&gt;
+
+&lt;p&gt;可以打印指定文件的最后十行（默认值，可以修改）到标准输出，也可以持续的监听文件，将更新打印到标准输出里&lt;/p&gt;
+
+&lt;p&gt;本文基于coreutils-8.28的代码分析tail是如何实现读取最后N行以及持续监听的功能&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>My First Post</title>
+      <link>http://hymian.github.io/post/my-first-post/</link>
+      <pubDate>Thu, 14 Dec 2017 14:58:22 +0800</pubDate>
+      
+      <guid>http://hymian.github.io/post/my-first-post/</guid>
+      <description>Hello World!</description>
+    </item>
+    
+  </channel>
+</rss>

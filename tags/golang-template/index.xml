@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Golang Template on 一个人的朝圣</title>
+    <link>http://hymian.github.io/tags/golang-template/</link>
+    <description>Recent content in Golang Template on 一个人的朝圣</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 07 Apr 2018 23:39:33 +0800</lastBuildDate>
+    
+	<atom:link href="http://hymian.github.io/tags/golang-template/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>go template &lt;no value&gt;处理</title>
+      <link>http://hymian.github.io/post/go_template_no_value/</link>
+      <pubDate>Sat, 07 Apr 2018 23:39:33 +0800</pubDate>
+      
+      <guid>http://hymian.github.io/post/go_template_no_value/</guid>
+      <description>在使用go的template库的时候，碰到一个需求：如果模板中使用了元数据中没有的字段，希望在渲染后看到的是空或者一个我们期望的默认值，但是</description>
+    </item>
+    
+  </channel>
+</rss>

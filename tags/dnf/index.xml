@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dnf on 一个人的朝圣</title>
+    <link>http://hymian.github.io/tags/dnf/</link>
+    <description>Recent content in Dnf on 一个人的朝圣</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 04 Nov 2018 17:54:14 +0800</lastBuildDate>
+    
+	<atom:link href="http://hymian.github.io/tags/dnf/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>dnf小技巧</title>
+      <link>http://hymian.github.io/post/dnf/</link>
+      <pubDate>Sun, 04 Nov 2018 17:54:14 +0800</pubDate>
+      
+      <guid>http://hymian.github.io/post/dnf/</guid>
+      <description>最近想做一件事，安装一个全新的fedora环境后，快速的自动把我的习惯配置给初始化，所以开始翻以前的安装历史，准备做一个脚本，这中间发现了几</description>
+    </item>
+    
+  </channel>
+</rss>

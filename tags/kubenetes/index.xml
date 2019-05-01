@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Kubenetes on 一个人的朝圣</title>
+    <link>http://hymian.github.io/tags/kubenetes/</link>
+    <description>Recent content in Kubenetes on 一个人的朝圣</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 24 Mar 2018 22:31:13 +0800</lastBuildDate>
+    
+	<atom:link href="http://hymian.github.io/tags/kubenetes/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>kubernetes feature gates</title>
+      <link>http://hymian.github.io/post/dynamic_kubelet_config/</link>
+      <pubDate>Sat, 24 Mar 2018 22:31:13 +0800</pubDate>
+      
+      <guid>http://hymian.github.io/post/dynamic_kubelet_config/</guid>
+      <description>kubernetes 1.8开始支持local ephemeral storage 在1.8和1.9系列中还只是alpha特性，为了开启特性，需要在master的三个组件和kubelet的启动参</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Gin on 一个人的朝圣</title>
+    <link>http://hymian.github.io/tags/gin/</link>
+    <description>Recent content in Gin on 一个人的朝圣</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 28 Jan 2018 23:55:19 +0800</lastBuildDate>
+    
+	<atom:link href="http://hymian.github.io/tags/gin/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>HttpRouter路由</title>
+      <link>http://hymian.github.io/post/router/</link>
+      <pubDate>Sun, 28 Jan 2018 23:55:19 +0800</pubDate>
+      
+      <guid>http://hymian.github.io/post/router/</guid>
+      <description>Gin这个web框架使用HttpRouter作为router HttpRouter使用radix tree1作为保存Http Path的数据结构 i</description>
+    </item>
+    
+    <item>
+      <title>gin-errorlog中间件</title>
+      <link>http://hymian.github.io/post/gin_middle/</link>
+      <pubDate>Thu, 18 Jan 2018 23:30:47 +0800</pubDate>
+      
+      <guid>http://hymian.github.io/post/gin_middle/</guid>
+      <description>一直在用gin这个框架来做web开发，但是在开发过程中有一点繁琐的地方： if err != nil { c.JSON(http.StatusInternalServerError, gin.H{ &amp;quot;error&amp;quot;: err.Error(), }) glog.Error(err) } else { c.JSON(http.StatusOK, hs) } 本文就是讲如何利用`gin的mid</description>
+    </item>
+    
+  </channel>
+</rss>

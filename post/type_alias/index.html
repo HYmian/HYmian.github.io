@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>类型别名的用途 - 一个人的朝圣</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="mian" />
+  <meta name="description" content="通常我们使用类型别名只是为了提高代码的可读性，但是今天看到一段有趣的代码，利用类型别名解决了一个递归调用的问题 package main import ( &amp;quot;encoding/json&amp;quot; &amp;quot;fmt&amp;quot; ) type Author struct { ID uint64 `json:&amp;quot;id&amp;quot;` Email" />
+
+  <meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.31.1" />
+
+
+<link rel="canonical" href="http://hymian.github.io/post/type_alias/" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" href="/favicon.ico" />
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+<link href="/dist/even.min.css?v=2.7.0" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+<meta property="og:title" content="类型别名的用途" />
+<meta property="og:description" content="通常我们使用类型别名只是为了提高代码的可读性，但是今天看到一段有趣的代码，利用类型别名解决了一个递归调用的问题 package main import ( &quot;encoding/json&quot; &quot;fmt&quot; ) type Author struct { ID uint64 `json:&quot;id&quot;` Email" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://hymian.github.io/post/type_alias/" />
+
+
+
+<meta property="article:published_time" content="2018-01-07T22:04:26&#43;08:00"/>
+
+<meta property="article:modified_time" content="2018-01-07T22:04:26&#43;08:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="类型别名的用途">
+<meta itemprop="description" content="通常我们使用类型别名只是为了提高代码的可读性，但是今天看到一段有趣的代码，利用类型别名解决了一个递归调用的问题 package main import ( &quot;encoding/json&quot; &quot;fmt&quot; ) type Author struct { ID uint64 `json:&quot;id&quot;` Email">
+
+
+<meta itemprop="datePublished" content="2018-01-07T22:04:26&#43;08:00" />
+<meta itemprop="dateModified" content="2018-01-07T22:04:26&#43;08:00" />
+<meta itemprop="wordCount" content="329">
+
+
+
+<meta itemprop="keywords" content="golang," />
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="类型别名的用途"/>
+<meta name="twitter:description" content="通常我们使用类型别名只是为了提高代码的可读性，但是今天看到一段有趣的代码，利用类型别名解决了一个递归调用的问题 package main import ( &quot;encoding/json&quot; &quot;fmt&quot; ) type Author struct { ID uint64 `json:&quot;id&quot;` Email"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">mian</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">mian</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">类型别名的用途</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-01-07 </span>
+        
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#参考">参考</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      
+
+<p>通常我们使用类型别名只是为了提高代码的可读性，但是今天看到一段有趣的代码，利用类型别名解决了一个递归调用的问题</p>
+
+<pre><code class="language-golang">package main
+
+import (
+	&quot;encoding/json&quot;
+	&quot;fmt&quot;
+)
+
+type Author struct {
+	ID    uint64 `json:&quot;id&quot;`
+	Email string `json:&quot;email&quot;`
+}
+
+type author Author
+
+func (a *Author) UnmarshalJSON(b []byte) (err error) {
+	j, s, n := author{}, &quot;&quot;, uint64(0)
+	if err = json.Unmarshal(b, &amp;j); err == nil {
+		*a = Author(j)
+		return
+	}
+	if err = json.Unmarshal(b, &amp;s); err == nil {
+		a.Email = s
+		return
+	}
+	if err = json.Unmarshal(b, &amp;n); err == nil {
+		a.ID = n
+	}
+	return
+}
+
+func main() {
+	var r Author
+	fmt.Println(&quot;ERROR:&quot;, json.Unmarshal([]byte(`{
+	  &quot;author&quot;: {
+	    &quot;id&quot;:    1234567890,
+	    &quot;email&quot;: &quot;nospam@westartup.eu&quot;
+	  }
+	}`), &amp;r))
+	fmt.Println(&quot;RECORDS:&quot;, r)
+}
+</code></pre>
+
+<p>注意这里的27行，<code>j</code>的类型是<code>author</code></p>
+
+<p>如果类型为<code>Author</code>，则程序会报错</p>
+
+<pre><code>runtime: goroutine stack exceeds 1000000000-byte limit
+fatal error: stack overflow
+</code></pre>
+
+<p>这里就是利用的类型别名继承字段，但是不继承方法的特性，来避免了<code>UnmarshalJSON</code>方法的递归调用</p>
+
+<p>当然，原文中对<code>JSON</code>的处理并不认为有很强的这种需求，但是处理的方法确实比较有意思</p>
+
+<p>另：对<code>map</code>做的类型别名定义，可以继承索引操作符，不知何解</p>
+
+<h3 id="参考">参考</h3>
+
+<ol>
+<li><a href="https://attilaolah.eu/2013/11/29/json-decoding-in-go/">JSON decoding in Go</a></li>
+</ol>
+
+    </div>
+
+    
+    
+<div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">mian</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">2018-01-07</span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="http://www.apache.org/licenses/LICENSE-2.0.txt" target="_blank">Apache License Version 2.0</a></span>
+  </p>
+</div>
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          
+          <a href="/tags/golang/">golang</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/build_version/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">仿kubeadm输出版本信息</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        
+          <a class="next" href="/post/closure/">
+            <span class="next-text nav-default">for...range和闭包</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+  
+
+  
+
+  
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:gopher.mian@outlook.com" class="iconfont icon-email" title="email"></a>
+  <a href="http://hymian.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    
+      2017 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">mian</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+<script type="text/javascript" src="/dist/even.min.js?v=2.7.0"></script>
+
+
+
+
+</body>
+</html>
